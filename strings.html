@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add description of the page -->
+    <meta name="description" content="UAT CSC102 Module 3 Assignment">
+    <!-- Link the stylesheet -->
+    <link rel="stylesheet" href='strings.css'>
+    <!-- Add the title -->
+    <title>Palindromes</title>
+</head>
+<body>
+    <!-- Add headers -->
+    <h1>Welcome to my Palindrome Parser!</h1>
+    <h2>Press the button below to get started</h2>
+    <!-- Add an image -->
+    <img id="cat" src="cat_palindrome.png">
+    <!-- Add a button to trigger the javascript function -->
+    <button id="button" onClick="runChecker()">Palindrome Check</button>
+    <script>
+        
+        // A looping function that will continue to loop until the user chooses to end the program
+        function runChecker(){
+            
+            // A function that will check if the string inputted is a palindrome (is the same backwards as it is forwards)
+            function palindromeCheck(sentence){
+                //remove all(\g) spaces(/\s) by replacing them with an empty string ''(no space) (effectively strips the spaces from the sentence)
+                sentence = sentence.replace(/\s+/g, '');
+                //create an empty array to store the letters within the sentence
+                reversed = [];
+                //iterate over the sentence and add each letter to the storage array
+                for (letter in sentence){
+                    reversed.push(sentence[letter]);
+                }
+                //reverse the order of the array and join all the letters together, then compare them to the sentence entered with the spaces removed 
+                if (reversed.reverse().join('') == sentence){
+                    //if it is a palindrome, inform the user
+                    alert('its a palindrome!');
+                }
+                else{
+                    //if it isn't a palindrome, inform the user
+                    alert('Nope, that definitely not a palindrome.');
+                }
+            }//end of inner scope function
+
+            //create a boolean variable to check whether or not the user wants to try another potential palindrome
+            var confirmed = true;
+            
+            //start of do-while loop
+            //do-while chosen so that the program is processed at least once
+            do {
+                //assign user input to a temporary variable that will then be inputted and checked within the palindromeCheck function
+                let entry = prompt("Please enter a word or sentence below to check if it is a palindrome:");
+                //run the palindromeCheck function with the user input
+                palindromeCheck(entry);
+                //see if the user wants to continue and try another paindrome check
+                confirmed = confirm('Would you like to try another word?');
+            }
+            //go to beginning of the loop if the user decides yes(ok), exit if not
+            while(confirmed == true);
+        }
+    </script>
+
+</body>
+</html>
